@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased — Installer dan dokumentasi
+
+- Menambahkan installer Terminal satu perintah dengan menu Mac, iPhone, iPad, Apple Watch, Apple TV, Apple Vision Pro, atau semua perangkat.
+- Installer membuat backup sebelum mengganti aplikasi Mac, menyiapkan source/XcodeGen, dan membuka Xcode untuk target yang membutuhkan signing pengguna.
+- Menambahkan mode `--dry-run`, opsi `--platform`, serta smoke test menu perangkat. Tidak mengubah engine pembersihan maupun versi aplikasi.
+
 ## 0.4.3 (macOS) — 2026-11-06
 
 - Menghilangkan overlay sidebar pada Uninstaller secara struktural. Layout utama memakai `HStack` dengan sidebar berlebar tetap dan panel detail fleksibel, sehingga lebar panel aplikasi selalu berkurang saat navigasi muncul.

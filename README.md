@@ -50,7 +50,22 @@ DL7 CLEANING adalah aplikasi utilitas Apple dengan antarmuka premium, pengenalan
 
 ## Instalasi cepat
 
-**Belum pernah menggunakan Xcode?** Baca **[Panduan Instalasi Lengkap Bahasa Indonesia](docs/INSTALL.md)** terlebih dahulu.
+### Satu perintah, pilih perangkat
+
+Salin **satu baris** berikut ke **Terminal di Mac**. Installer akan menampilkan menu Mac, iPhone, iPad, Mac + iPhone, Apple Watch, Apple TV, Vision Pro, atau semuanya:
+
+```bash
+/bin/zsh -c 'f="$(mktemp -t dl7-install)"; curl -fsSL https://raw.githubusercontent.com/dahlah77/dl7-cleaning/main/scripts/install.sh -o "$f" && /bin/zsh "$f"; result=$?; /bin/rm -f "$f"; exit "$result"'
+```
+
+**Mac:** installer menyiapkan source, build, mencadangkan instalasi yang akan diganti, memasang, lalu membuka aplikasi. **iPhone/iPad/Watch/TV/Vision:** installer menyiapkan proyek dan membuka Xcode; pengguna tetap perlu memilih perangkat dan menyelesaikan *code signing* sebelum menekan **Run ▶**. Proses Apple ini tidak dapat dilewati oleh sebuah skrip terminal.
+
+**[Lihat semua pilihan, mode otomatis, dan panduan untuk pemula →](docs/INSTALL.md)** · [Baca source installer](scripts/install.sh)
+
+<details>
+<summary><b>Alternatif: instalasi manual untuk developer</b></summary>
+
+**Belum pernah menggunakan Xcode?** Baca [Panduan Instalasi Lengkap Bahasa Indonesia](docs/INSTALL.md) terlebih dahulu.
 
 Untuk memulai dari source:
 
@@ -71,6 +86,8 @@ Skrip menghasilkan aplikasi Mac dalam folder `dist`, tanpa menghapus pemasangan 
 | Apple Vision Pro | Pilih `DL7visionOS` di Xcode | Target eksperimental |
 
 **Persiapan:** Mac dengan Xcode, internet, dan XcodeGen untuk target selain macOS (`brew install xcodegen`). Untuk memasang ke perangkat fisik, gunakan Apple Account untuk signing serta Developer Mode bila diminta. Profil gratis *Personal Team* kedaluwarsa setelah 7 hari.
+
+</details>
 
 ## Tampilan dan personalisasi
 
@@ -131,6 +148,8 @@ DL7-CLEANING/
 │   └── apply_to_upstream_clone.sh
 ├── scripts/
 │   ├── build-macos.sh
+│   ├── install.sh           # Installer satu perintah + menu perangkat
+│   ├── test-install.sh      # Smoke test tanpa menyentuh perangkat
 │   └── open-apple-project.sh
 ├── docs/INSTALL.md
 ├── docs/media/              # Demo video MP4 + animated preview GIF

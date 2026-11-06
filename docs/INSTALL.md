@@ -2,6 +2,63 @@
 
 Panduan ini ditulis untuk pengguna baru. **Satu source code mendukung beberapa perangkat Apple, tetapi aplikasi harus dibangun untuk sistem operasi masing-masing.** Saat ini belum tersedia distribusi resmi melalui App Store atau TestFlight.
 
+## Cara termudah: satu perintah Terminal
+
+**Gunakan Terminal di Mac** (bukan Terminal iPhone). Pastikan Xcode sudah dipasang dari Mac App Store dan pernah dibuka setidaknya sekali. Salin-tempel perintah ini tanpa mengubah apa pun:
+
+```bash
+/bin/zsh -c 'f="$(mktemp -t dl7-install)"; curl -fsSL https://raw.githubusercontent.com/dahlah77/dl7-cleaning/main/scripts/install.sh -o "$f" && /bin/zsh "$f"; result=$?; /bin/rm -f "$f"; exit "$result"'
+```
+
+Saat menu tampil, pilih satu angka:
+
+| Angka | Pilihan | Yang dilakukan installer |
+| :---: | --- | --- |
+| **1** | Mac | Build, cadangkan versi Mac yang ditimpa, pasang, lalu buka DL7 |
+| **2** | iPhone | Siapkan proyek iOS dan buka Xcode |
+| **3** | iPad | Siapkan proyek iPadOS dan buka Xcode |
+| **4** | Mac + iPhone | Pasang dan buka Mac, lalu siapkan iPhone di Xcode |
+| **5** | Apple TV | Siapkan proyek tvOS dan buka Xcode |
+| **6** | Apple Watch | Siapkan proyek watchOS dan buka Xcode |
+| **7** | Apple Vision Pro | Siapkan proyek visionOS dan buka Xcode |
+| **8** | Semua perangkat | Jalankan alur Mac dan siapkan semua skema di Xcode |
+| **0** | Keluar | Tidak memasang apa pun |
+
+**Yang diurus otomatis:** pemeriksaan Mac/Xcode, download source jika belum ada, update *fast-forward* untuk checkout bersih, build Mac, cadangan app Mac yang diganti, pemasangan dan pembukaan aplikasi Mac, pemasangan XcodeGen via Homebrew jika diperlukan, generate proyek companion, serta membuka Xcode. Tidak menggunakan `sudo` dan tidak menghapus instalasi lain.
+
+**Yang tetap membutuhkan langkah manusia untuk perangkat fisik:** masuk Apple Account ke Xcode, memilih target/perangkat, pairing, **Signing Team**, Developer Mode bila diminta, dan **Run ▶**. Apple membatasi instalasi app yang tidak ditandatangani; skrip tidak bisa menerobos pembatasan tersebut. Watch/TV/Vision masih eksperimental.
+
+### Mode otomatis tanpa menu
+
+Jika source sudah diunduh, jalankan dari folder repo:
+
+```bash
+zsh scripts/install.sh --platform macos       # Mac saja
+zsh scripts/install.sh --platform iphone      # iPhone saja
+zsh scripts/install.sh --platform ipad        # iPad saja
+zsh scripts/install.sh --platform both        # Mac + iPhone
+zsh scripts/install.sh --platform tvos        # Apple TV saja
+zsh scripts/install.sh --platform watchos     # Apple Watch saja
+zsh scripts/install.sh --platform visionos    # Vision Pro saja
+zsh scripts/install.sh --platform all         # Semua target
+```
+
+Tambahkan `--dry-run` untuk melihat langkah yang akan dilakukan tanpa perubahan apa pun, atau `--no-launch` untuk menyiapkan build/proyek tanpa membukanya. Contoh: `zsh scripts/install.sh --platform both --dry-run`.
+
+Jika `~/Developer/DL7-CLEANING` berisi perubahan lokal, installer **tidak mereset atau menghapusnya**. Untuk memilih folder source lain, jalankan `DL7_SOURCE_DIR="$HOME/Developer/DL7-BARU" zsh scripts/install.sh`.
+
+### Tentang backup dan pembaruan Mac
+
+- Aplikasi yang dipasang memakai nama konsisten **DL7 CLEANING.app** di `/Applications` bila bisa ditulis, atau di `~/Applications` untuk instalasi pengguna.
+- Bila aplikasi dengan nama tersebut sudah ada, installer memindahkannya ke `~/Library/Application Support/DL7 CLEANING/Installation Backups/` sebelum memasang yang baru.
+- Jika folder Applications butuh izin administrator, installer **tidak memaksa akses**. Build tetap tersimpan di `dist` dan bisa dibuka dari sana.
+- Jika ada aplikasi DL7 dengan nama berbeda di lokasi lain, installer **tidak menghapusnya secara otomatis**. Periksa dan rapikan salinan lama hanya setelah memastikan yang baru berjalan.
+- Jangan jalankan perintah dari sumber yang tidak dipercaya. [Baca kode installer](../scripts/install.sh) sebelum mengeksekusinya jika ingin melakukan audit.
+
+---
+
+## Panduan manual (alternatif)
+
 ## 1. Pilih perangkat
 
 | Perangkat | Target proyek | Cara memasang | Status pengujian |
