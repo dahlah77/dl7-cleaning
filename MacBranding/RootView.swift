@@ -40,7 +40,7 @@ struct RootView: View {
     @Environment(ExclusionStore.self) private var exclusions
 
     @State private var selection: DL7Route = .home
-    @State private var visibility: NavigationSplitViewVisibility = .all
+    @State private var isSidebarVisible = true
     @State private var disk: DiskSpace?
     @State private var systemJunk = JunkCleanerModel(group: .system)
     @State private var developerJunk = JunkCleanerModel(group: .developer)
@@ -62,70 +62,31 @@ struct RootView: View {
     }
 
     var body: some View {
-        NavigationSplitView(columnVisibility: $visibility) {
-            VStack(spacing: 0) {
-                HStack(spacing: 11) {
-                    Image(systemName: "circle.hexagongrid.fill")
-                        .font(.system(size: 25))
-                        .foregroundStyle(colors.accent)
-                        .frame(width: 42, height: 42)
-                        .background(colors.accent.opacity(0.12), in: RoundedRectangle(cornerRadius: 12))
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text("DL7").font(.system(size: 23, weight: .bold, design: .rounded))
-                        Text("C L E A N I N G")
-                            .font(.system(size: 9, weight: .semibold, design: .monospaced))
-                            .foregroundStyle(colors.accent)
-                    }
-                    Spacer(minLength: 0)
-                }
-                .padding(.horizontal, 18)
-                .padding(.top, 18)
-                .padding(.bottom, 12)
-                .accessibilityElement(children: .combine)
-
-                List(selection: sidebarSelection) {
-                    row(.home)
-                    Section("BERSIHKAN") {
-                        row(.systemJunk, badge: systemJunk.badge)
-                        row(.developerJunk, badge: developerJunk.badge)
-                    }
-                    Section("KELOLA") {
-                        row(.uninstaller)
-                        row(.largeFiles)
-                        row(.startupItems)
-                    }
-                    Section("DL7") {
-                        row(.features)
-                        row(.appearance)
-                        row(.support)
-                    }
-                }
-                .listStyle(.sidebar)
-                .scrollContentBackground(.hidden)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        // Unlike NavigationSplitView, an explicit HStack never floats the
+        // sidebar above Uninstaller's app list. Toggling it gives the detail
+        // column real space rather than covering its leading edge.
+        HStack(spacing: 0) {
+            if isSidebarVisible {
+                sidebar
+                    .frame(width: 248)
+                Rectangle()
+                    .fill(colors.line)
+                    .frame(width: 1)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(colors.background.ignoresSafeArea())
-            .clipped()
-            .navigationSplitViewColumnWidth(min: 220, ideal: 245, max: 280)
-        } detail: {
-            GeometryReader { geometry in
-                ZStack(alignment: .topLeading) {
-                    colors.background
-                    RadialGradient(colors: [colors.accent.opacity(0.10), .clear],
-                                   center: .topTrailing, startRadius: 0, endRadius: 600)
-                        .allowsHitTesting(false)
-                    detail
-                        .frame(width: geometry.size.width, height: geometry.size.height,
-                               alignment: .topLeading)
+            detailPanel
+                .frame(minWidth: 0, maxWidth: .infinity, maxHeight: .infinity)
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigation) {
+                Button {
+                    isSidebarVisible.toggle()
+                } label: {
+                    Image(systemName: "sidebar.left")
                 }
-                .frame(width: geometry.size.width, height: geometry.size.height)
-                .clipped()
+                .help(isSidebarVisible ? "Sembunyikan navigasi" : "Tampilkan navigasi")
+                .accessibilityLabel(isSidebarVisible ? "Sembunyikan navigasi" : "Tampilkan navigasi")
             }
         }
-        // Keep the sidebar and detail in separate columns. A prominent-detail
-        // split view overlays the sidebar over the uninstaller's own app list.
-        .navigationSplitViewStyle(.balanced)
         .preferredColorScheme(.dark)
         .tint(colors.accent)
         .onChange(of: exclusions.list, initial: true) { _, list in
@@ -137,6 +98,69 @@ struct RootView: View {
         }
         .onReceive(NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification)) { _ in
             permissions.refresh()
+        }
+    }
+
+    private var sidebar: some View {
+        VStack(spacing: 0) {
+            HStack(spacing: 11) {
+                Image(systemName: "circle.hexagongrid.fill")
+                    .font(.system(size: 25))
+                    .foregroundStyle(colors.accent)
+                    .frame(width: 42, height: 42)
+                    .background(colors.accent.opacity(0.12), in: RoundedRectangle(cornerRadius: 12))
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("DL7").font(.system(size: 23, weight: .bold, design: .rounded))
+                    Text("C L E A N I N G")
+                        .font(.system(size: 9, weight: .semibold, design: .monospaced))
+                        .foregroundStyle(colors.accent)
+                }
+                Spacer(minLength: 0)
+            }
+            .padding(.horizontal, 18)
+            .padding(.top, 18)
+            .padding(.bottom, 12)
+            .accessibilityElement(children: .combine)
+
+            List(selection: sidebarSelection) {
+                row(.home)
+                Section("BERSIHKAN") {
+                    row(.systemJunk, badge: systemJunk.badge)
+                    row(.developerJunk, badge: developerJunk.badge)
+                }
+                Section("KELOLA") {
+                    row(.uninstaller)
+                    row(.largeFiles)
+                    row(.startupItems)
+                }
+                Section("DL7") {
+                    row(.features)
+                    row(.appearance)
+                    row(.support)
+                }
+            }
+            .listStyle(.sidebar)
+            .scrollContentBackground(.hidden)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(colors.background)
+        .clipped()
+    }
+
+    private var detailPanel: some View {
+        GeometryReader { geometry in
+            ZStack(alignment: .topLeading) {
+                colors.background
+                RadialGradient(colors: [colors.accent.opacity(0.10), .clear],
+                               center: .topTrailing, startRadius: 0, endRadius: 600)
+                    .allowsHitTesting(false)
+                detail
+                    .frame(width: geometry.size.width, height: geometry.size.height,
+                           alignment: .topLeading)
+            }
+            .frame(width: geometry.size.width, height: geometry.size.height)
+            .clipped()
         }
     }
 

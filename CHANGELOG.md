@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.4.3 (macOS) — 2026-11-06
+
+- Menghilangkan overlay sidebar pada Uninstaller secara struktural. Layout utama memakai `HStack` dengan sidebar berlebar tetap dan panel detail fleksibel, sehingga lebar panel aplikasi selalu berkurang saat navigasi muncul.
+- Tombol tampil/sembunyikan navigasi tetap ada di toolbar macOS dan menggunakan ikon SF Symbols.
+- Menambahkan pemeriksaan build yang menolak penggunaan `NavigationSplitView` di root agar daftar aplikasi tidak kembali tersembunyi di bawah navigasi.
+- Tidak ada perubahan terhadap operasi pembersihan maupun aplikasi iPhone.
+
 ## 0.4.2 (macOS) — 2026-11-06
 
 - Memperbaiki regresi navigasi v0.4.1 yang terlihat di rekaman layar: saat sidebar dibuka, daftar Uninstaller tertutup karena style `prominentDetail` menggunakan overlay.
