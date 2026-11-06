@@ -47,7 +47,7 @@ DL7 CLEANING adalah aplikasi utilitas Apple dengan antarmuka premium, pengenalan
 
 > **Prinsip keamanan:** Pemindaian tidak otomatis menghapus data. Aplikasi meminta pilihan dan konfirmasi pengguna untuk tindakan yang menghapus data.
 
-> **Status source: macOS v0.4.4 / iPhone v0.4.1.** Saat ini **tidak ada APK, IPA universal, DMG bernotarisasi, TestFlight, atau rilis App Store**. Pengguna membangun aplikasi menggunakan Mac dan Xcode. Perbaikan layout macOS v0.4.3 tetap dipertahankan; iPhone v0.4.0 telah diuji pada iPhone 11. Versi terbaru dengan tautan DEVELOPER belum diuji secara fisik. Target lainnya masih eksperimental.
+> **Status terbaru: macOS v0.4.4 / iPhone v0.4.1.** Kedua versi berhasil dibangun, dipasang, dan dijalankan di Mac Intel serta iPhone 11 pada 7 November 2026. Saat ini **tidak ada APK, IPA universal, DMG bernotarisasi, TestFlight, atau rilis App Store**. Pengguna lain membangun aplikasi menggunakan Mac dan Xcode. Perbaikan layout sidebar macOS v0.4.3 tetap dipertahankan. Target lainnya masih eksperimental.
 
 ## Instalasi cepat
 

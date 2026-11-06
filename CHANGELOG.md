@@ -4,7 +4,8 @@
 
 - Menambahkan tautan **DEVELOPER** pada sidebar macOS dan tab iPhone/iPad untuk membuka portofolio di browser eksternal.
 - Tab iPhone mengembalikan pilihan sebelumnya setelah membuka browser sehingga tidak meninggalkan halaman kosong.
-- Bundle identifier tetap sama agar pembaruan dapat menggantikan versi sebelumnya; build fisik terbaru masih perlu diverifikasi.
+- Bundle identifier tetap sama sehingga pembaruan menggantikan versi sebelumnya tanpa membuat aplikasi kedua.
+- Build, instalasi, dan peluncuran macOS 0.4.4 serta iPhone 0.4.1 berhasil diverifikasi pada Mac Intel dan iPhone 11 (7 November 2026).
 - Memperbaiki pendeteksian root installer saat dijalankan lewat fungsi zsh, serta menangani folder source non-repository dengan checkout terpisah tanpa mengubah data lama.
 
 ## Installer dan dokumentasi — 2026-11-06

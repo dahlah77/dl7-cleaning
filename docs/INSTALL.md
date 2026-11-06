@@ -64,8 +64,8 @@ Jika `~/Developer/DL7-CLEANING` berisi perubahan lokal, installer **tidak merese
 
 | Perangkat | Target proyek | Cara memasang | Status pengujian |
 | --- | --- | --- | --- |
-| Mac (macOS 14+) | Mac fork | Build di Mac, lalu salin `.app` ke Applications | **Sudah diuji** di Mac Intel |
-| iPhone (iOS 18+) | `DL7iOS` | Jalankan melalui Xcode | **Sudah diuji** di iPhone 11 |
+| Mac (macOS 14+) | Mac fork | Build di Mac, lalu salin `.app` ke Applications | **v0.4.4 diuji** di Mac Intel |
+| iPhone (iOS 18+) | `DL7iOS` | Jalankan melalui Xcode | **v0.4.1 diuji** di iPhone 11 |
 | iPad (iPadOS 18+) | `DL7iOS` | Sama dengan iPhone | Belum diuji di iPad fisik |
 | Apple Watch (watchOS 11+) | `DL7watchOS` | Xcode + Apple Watch yang terpasang ke iPhone | Eksperimental; belum diuji perangkat fisik |
 | Apple TV (tvOS 18+) | `DL7tvOS` | Pairing Apple TV di Xcode | Eksperimental; belum diuji perangkat fisik |
