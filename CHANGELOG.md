@@ -1,6 +1,12 @@
 # Changelog
 
-## Unreleased — Installer dan dokumentasi
+## 0.4.4 (macOS) / 0.4.1 (iPhone) — 2026-11-06
+
+- Menambahkan tautan **DEVELOPER** pada sidebar macOS dan tab iPhone/iPad untuk membuka portofolio di browser eksternal.
+- Tab iPhone mengembalikan pilihan sebelumnya setelah membuka browser sehingga tidak meninggalkan halaman kosong.
+- Bundle identifier tetap sama agar pembaruan dapat menggantikan versi sebelumnya; build fisik terbaru masih perlu diverifikasi.
+
+## Installer dan dokumentasi — 2026-11-06
 
 - Menambahkan installer Terminal satu perintah dengan menu Mac, iPhone, iPad, Apple Watch, Apple TV, Apple Vision Pro, atau semua perangkat.
 - Installer membuat backup sebelum mengganti aplikasi Mac, menyiapkan source/XcodeGen, dan membuka Xcode untuk target yang membutuhkan signing pengguna.

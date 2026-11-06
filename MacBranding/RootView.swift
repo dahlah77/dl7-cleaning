@@ -137,6 +137,13 @@ struct RootView: View {
                     row(.features)
                     row(.appearance)
                     row(.support)
+                    if let developerURL = URL(string: "https://dahlah7-personal-portfolio1.vercel.app") {
+                        Link(destination: developerURL) {
+                            Label("DEVELOPER", systemImage: "person.crop.circle")
+                        }
+                        .help("Buka portofolio developer di browser")
+                        .accessibilityLabel("DEVELOPER — Buka portofolio di browser")
+                    }
                 }
             }
             .listStyle(.sidebar)

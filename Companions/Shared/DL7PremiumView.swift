@@ -3,7 +3,7 @@ import SwiftUI
 import UIKit
 
 private enum PremiumTab: Hashable {
-    case home, clean, features, settings
+    case home, clean, features, settings, developer
 }
 
 /// Distinct DL7 interface: native Apple navigation, minimal copy and customizable neon palette.
@@ -42,6 +42,13 @@ struct DL7PremiumView: View {
         .tint(colors.accent)
         .preferredColorScheme(.dark)
         .task { await cache.scan() }
+        .onChange(of: tab) { previous, current in
+            guard current == .developer else { return }
+            tab = previous == .developer ? .home : previous
+            if let url = URL(string: "https://dahlah7-personal-portfolio1.vercel.app") {
+                openURL(url)
+            }
+        }
     }
 
     private var tabs: some View {
@@ -57,6 +64,9 @@ struct DL7PremiumView: View {
             }
             Tab("Setelan", systemImage: "slider.horizontal.3", value: PremiumTab.settings) {
                 NavigationStack { settings }
+            }
+            Tab("DEVELOPER", systemImage: "person.crop.circle", value: PremiumTab.developer) {
+                Color.clear
             }
         }
     }

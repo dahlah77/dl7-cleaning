@@ -51,6 +51,7 @@ Jika `~/Developer/DL7-CLEANING` berisi perubahan lokal, installer **tidak merese
 
 - Aplikasi yang dipasang memakai nama konsisten **DL7 CLEANING.app** di `/Applications` bila bisa ditulis, atau di `~/Applications` untuk instalasi pengguna.
 - Bila aplikasi dengan nama tersebut sudah ada, installer memindahkannya ke `~/Library/Application Support/DL7 CLEANING/Installation Backups/` sebelum memasang yang baru.
+- Salinan lama dengan nama `DL7 CLEANING v*.app` di folder Applications akan dipindah ke cadangan **hanya bila bundle identifier terverifikasi sebagai DL7** dan izin folder mencukupi. File lain tetap dibiarkan.
 - Jika folder Applications butuh izin administrator, installer **tidak memaksa akses**. Build tetap tersimpan di `dist` dan bisa dibuka dari sana.
 - Jika ada aplikasi DL7 dengan nama berbeda di lokasi lain, installer **tidak menghapusnya secara otomatis**. Periksa dan rapikan salinan lama hanya setelah memastikan yang baru berjalan.
 - Jangan jalankan perintah dari sumber yang tidak dipercaya. [Baca kode installer](../scripts/install.sh) sebelum mengeksekusinya jika ingin melakukan audit.
@@ -107,7 +108,7 @@ Script akan:
 1. Mengunduh source Havus berlisensi MIT pada commit yang ditentukan.
 2. Memasukkan identitas, warna, dan UI DL7 CLEANING.
 3. Membangun aplikasi macOS Release dan menandatanganinya secara lokal.
-4. Menyimpan hasil di `dist/DL7 CLEANING v0.4.3.app`.
+4. Menyimpan hasil di `dist/DL7 CLEANING v0.4.4.app`.
 
 **Langkah terakhir:** buka folder `dist` di Finder, lalu tarik aplikasi ke **Applications**. Buka DL7 CLEANING dari Launchpad/Finder.
 
@@ -169,6 +170,7 @@ Apple TV **tidak memerlukan Developer Mode** seperti iPhone; pairing melalui Xco
 
 - **Warna:** buka **Setelan** (iPhone/iPad) atau **Tampilan** (Mac). Ubah *Aksen*, *Latar belakang*, dan *Latar depan* satu per satu melalui color picker atau kode HEX. Tombol Reset mengembalikan referensi bawaan.
 - **Penjelasan fitur:** tersedia dalam satu navigasi bernama **Fitur**.
+- **Portofolio developer:** tekan **DEVELOPER** pada sidebar Mac atau tab iPhone/iPad. Browser default akan membuka `https://dahlah7-personal-portfolio1.vercel.app`.
 - **Donasi kripto:** buka **Dukung DL7 / Buy me a coffee**, pilih BTC, SOL, ETH, BNB, atau USDT (BNB Smart Chain). Alamat resmi tampil otomatis; tekan **Salin alamat** dan tempelkan di wallet. Untuk USDT gunakan **BNB Smart Chain (BEP-20)**. DL7 tidak mengirim uang otomatis.
 - **Perbedaan Mac vs iPhone:** di Mac tersedia tool pembersihan sistem/developer berdasarkan akses pengguna. Di iPhone, cache sistem/aplikasi lain tetap terlindungi oleh sandbox iOS.
 

@@ -6,8 +6,8 @@
 
 **Native experience · Transparent cleanup · Your colors, your workspace**
 
-[![macOS](https://img.shields.io/badge/macOS-v0.4.3-1EFF5A?style=flat-square&logo=apple&logoColor=040805)](docs/INSTALL.md)
-[![iPhone](https://img.shields.io/badge/iPhone-v0.4.0-3DFFF5?style=flat-square&logo=apple&logoColor=040805)](docs/INSTALL.md)
+[![macOS](https://img.shields.io/badge/macOS-v0.4.4-1EFF5A?style=flat-square&logo=apple&logoColor=040805)](docs/INSTALL.md)
+[![iPhone](https://img.shields.io/badge/iPhone-v0.4.1-3DFFF5?style=flat-square&logo=apple&logoColor=040805)](docs/INSTALL.md)
 [![SwiftUI](https://img.shields.io/badge/UI-SwiftUI-242424?style=flat-square&logo=swift&logoColor=white)](Companions/)
 [![MIT](https://img.shields.io/badge/License-MIT-242424?style=flat-square)](LICENSE)
 
@@ -43,10 +43,11 @@ DL7 CLEANING adalah aplikasi utilitas Apple dengan antarmuka premium, pengenalan
 | ◉ **Deteksi Perangkat** | Menyesuaikan antarmuka dengan jenis perangkat | Apple companions |
 | ◐ **Tema Kustom** | Mengatur warna aksen, latar belakang, dan teks secara terpisah | Mac & iPhone |
 | ♡ **Dukung DL7** | Donasi sukarela melalui alamat kripto | Mac & iPhone |
+| ↗ **DEVELOPER** | Membuka [portofolio developer](https://dahlah7-personal-portfolio1.vercel.app) di browser bawaan | Mac & iPhone |
 
 > **Prinsip keamanan:** Pemindaian tidak otomatis menghapus data. Aplikasi meminta pilihan dan konfirmasi pengguna untuk tindakan yang menghapus data.
 
-> **Status publik: macOS v0.4.3 / iPhone v0.4.0.** Saat ini **tidak ada APK, IPA universal, DMG bernotarisasi, TestFlight, atau rilis App Store**. Pengguna membangun aplikasi menggunakan Mac dan Xcode. Versi macOS 0.4.3 menggunakan tata letak kolom eksplisit agar sidebar tidak pernah menutupi daftar aplikasi ketika ditampilkan; iPhone 0.4.0 telah diuji pada iPhone 11. Target lainnya masih eksperimental.
+> **Status source: macOS v0.4.4 / iPhone v0.4.1.** Saat ini **tidak ada APK, IPA universal, DMG bernotarisasi, TestFlight, atau rilis App Store**. Pengguna membangun aplikasi menggunakan Mac dan Xcode. Perbaikan layout macOS v0.4.3 tetap dipertahankan; iPhone v0.4.0 telah diuji pada iPhone 11. Versi terbaru dengan tautan DEVELOPER belum diuji secara fisik. Target lainnya masih eksperimental.
 
 ## Instalasi cepat
 
@@ -104,6 +105,7 @@ Ketiganya dapat diubah sendiri-sendiri melalui color picker atau kode HEX dan di
 - iPhone/iPad: **Beranda • Bersihkan • Fitur • Setelan**.
 - Mac: dashboard, sidebar native, tool cleanup Havus, **Fitur**, **Tampilan**, dan **Dukung DL7**.
 - Satu navigasi **Fitur** menjelaskan kemampuan aplikasi tanpa memenuhi halaman utama dengan teks panjang.
+- Navigasi **DEVELOPER** membuka portofolio lewat browser eksternal tanpa mengubah data aplikasi.
 
 ## Kemampuan & batasan
 
@@ -150,6 +152,7 @@ DL7-CLEANING/
 │   ├── build-macos.sh
 │   ├── install.sh           # Installer satu perintah + menu perangkat
 │   ├── test-install.sh      # Smoke test tanpa menyentuh perangkat
+│   ├── test-developer-link.sh # Verifikasi link eksternal Mac/iPhone
 │   └── open-apple-project.sh
 ├── docs/INSTALL.md
 ├── docs/media/              # Demo video MP4 + animated preview GIF

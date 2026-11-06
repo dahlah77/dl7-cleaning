@@ -252,6 +252,31 @@ dl7_install_mac() {
     dl7_error "Pemasangan gagal. Build tetap tersedia di: $build_app"
   fi
   dl7_info "Mac: terpasang di $installed_app"
+
+  # Keep one obvious DL7 entry in Applications. Older version-named bundles
+  # are moved to recoverable backups only after confirming their bundle ID.
+  local legacy_dir legacy_app legacy_bundle legacy_backup
+  for legacy_dir in "/Applications" "$HOME/Applications"; do
+    [[ -d "$legacy_dir" ]] || continue
+    for legacy_app in "$legacy_dir"/DL7\ CLEANING\ v*.app(N); do
+      [[ "$legacy_app" != "$installed_app" ]] || continue
+      legacy_bundle="$(/usr/libexec/PlistBuddy -c 'Print CFBundleIdentifier' "$legacy_app/Contents/Info.plist" 2>/dev/null || true)"
+      [[ "$legacy_bundle" == "com.dahlah7.dl7cleaning.macos" ]] || continue
+      if [[ -w "$legacy_dir" ]]; then
+        backup_dir="$HOME/Library/Application Support/DL7 CLEANING/Installation Backups"
+        mkdir -p "$backup_dir"
+        legacy_backup="$backup_dir/${legacy_app:t:r}-$build_stamp.app"
+        if mv "$legacy_app" "$legacy_backup"; then
+          dl7_info "Salinan DL7 lama dicadangkan: $legacy_backup"
+        else
+          dl7_info "Tidak bisa memindahkan salinan lama: $legacy_app"
+        fi
+      else
+        dl7_info "Salinan lama masih ada (izin administrator diperlukan): $legacy_app"
+      fi
+    done
+  done
+
   if (( ! dl7_skip_launch )); then
     open "$installed_app"
     dl7_info 'Mac: aplikasi dibuka.'
