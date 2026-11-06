@@ -7,7 +7,7 @@ project_root="${0:A:h:h}"
 upstream_commit='df0478671adce53d0a0b24597b0ccfa620311d55'
 build_root="$(mktemp -d "${TMPDIR:-/tmp}/dl7-macos.XXXXXX")"
 checkout="$build_root/Havus"
-output="$project_root/dist/DL7 CLEANING v0.4.1.app"
+output="$project_root/dist/DL7 CLEANING v0.4.2.app"
 
 if [[ -e "$output" ]]; then
   print -u2 "Output already exists: $output"
@@ -18,6 +18,7 @@ if ! xcodebuild -version >/dev/null 2>&1; then
   print -u2 'Full Xcode is required. Install Xcode and select it in Xcode Settings.'
   exit 2
 fi
+/bin/zsh "$project_root/scripts/check-macos-layout.sh"
 for command_name in git swift sips codesign; do
   if ! command -v "$command_name" >/dev/null 2>&1; then
     print -u2 "Missing required tool: $command_name"

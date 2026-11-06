@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.4.2 (macOS) — 2026-11-06
+
+- Memperbaiki regresi navigasi v0.4.1 yang terlihat di rekaman layar: saat sidebar dibuka, daftar Uninstaller tertutup karena style `prominentDetail` menggunakan overlay.
+- Mengembalikan `NavigationSplitView` ke mode `balanced`, mempertahankan pembatasan ukuran dan header sidebar yang diperbaiki pada v0.4.1.
+- Pembaruan ini hanya untuk Mac, tanpa mengubah engine pembersihan, data pengguna, maupun aplikasi iPhone.
+- Menambahkan pemeriksaan source sebelum build agar gaya sidebar overlay tidak terpakai kembali tanpa sengaja.
+
 ## 0.4.1 (macOS) — 2026-11-06
 
 - Memperbaiki sidebar yang bisa terpotong atau bergeser saat berpindah fitur dan mengubah ukuran jendela.

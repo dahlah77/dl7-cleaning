@@ -123,7 +123,9 @@ struct RootView: View {
                 .clipped()
             }
         }
-        .navigationSplitViewStyle(.prominentDetail)
+        // Keep the sidebar and detail in separate columns. A prominent-detail
+        // split view overlays the sidebar over the uninstaller's own app list.
+        .navigationSplitViewStyle(.balanced)
         .preferredColorScheme(.dark)
         .tint(colors.accent)
         .onChange(of: exclusions.list, initial: true) { _, list in
