@@ -1,14 +1,66 @@
+<div align="center">
+
 # DL7 CLEANING
 
-**A cleaner built for Apple — native, personal, transparent.**
+### A cleaner built for Apple.
+
+**Native experience · Transparent cleanup · Your colors, your workspace**
+
+[![macOS](https://img.shields.io/badge/macOS-v0.4.3-1EFF5A?style=flat-square&logo=apple&logoColor=040805)](docs/INSTALL.md)
+[![iPhone](https://img.shields.io/badge/iPhone-v0.4.0-3DFFF5?style=flat-square&logo=apple&logoColor=040805)](docs/INSTALL.md)
+[![SwiftUI](https://img.shields.io/badge/UI-SwiftUI-242424?style=flat-square&logo=swift&logoColor=white)](Companions/)
+[![MIT](https://img.shields.io/badge/License-MIT-242424?style=flat-square)](LICENSE)
+
+[**Demo**](#demo-aplikasi) · [**Instalasi**](#instalasi-cepat) · [**Fitur**](#fitur-utama) · [**Tema**](#tampilan-dan-personalisasi) · [**Kontribusi**](CONTRIBUTING.md)
+
+</div>
+
+---
+
+## Demo aplikasi
+
+<div align="center">
+
+[![Pratinjau demo DL7 CLEANING — klik untuk menonton video](docs/media/dl7-cleaning-preview.gif)](docs/media/dl7-cleaning-demo.mp4)
+
+**▶ [Tonton demo lengkap — 36 detik (MP4)](docs/media/dl7-cleaning-demo.mp4)**
+
+<sub>Rekaman langsung di macOS: pemindaian, pemilihan item, pembersihan, uninstaller, dan navigasi fitur.</sub>
+
+</div>
 
 DL7 CLEANING adalah aplikasi utilitas Apple dengan antarmuka premium, pengenalan perangkat otomatis, navigasi bawaan Apple, dan kontrol warna yang dapat dipersonalisasi. Versi macOS mengadaptasi engine open-source [Havus](https://github.com/XNyetok/Havus) (MIT), sementara versi perangkat lain menggunakan SwiftUI dan mengikuti batas keamanan platform Apple.
+
+## Fitur utama
+
+| Modul | Fungsi | Platform |
+| :--- | :--- | :--- |
+| ✦ **Sampah Sistem** | Memindai cache, log, dan file sisa yang dapat dibersihkan | macOS |
+| ⚒ **Sampah Developer** | Memeriksa sisa build dan cache alat pengembangan | macOS |
+| ◈ **Uninstaller** | Meninjau aplikasi dan berkas terkait sebelum menghapus | macOS |
+| ▤ **File Besar** | Menemukan file yang menggunakan ruang penyimpanan | macOS |
+| ⏻ **Startup** | Meninjau item dan agen startup | macOS |
+| ◉ **Deteksi Perangkat** | Menyesuaikan antarmuka dengan jenis perangkat | Apple companions |
+| ◐ **Tema Kustom** | Mengatur warna aksen, latar belakang, dan teks secara terpisah | Mac & iPhone |
+| ♡ **Dukung DL7** | Donasi sukarela melalui alamat kripto | Mac & iPhone |
+
+> **Prinsip keamanan:** Pemindaian tidak otomatis menghapus data. Aplikasi meminta pilihan dan konfirmasi pengguna untuk tindakan yang menghapus data.
 
 > **Status publik: macOS v0.4.3 / iPhone v0.4.0.** Saat ini **tidak ada APK, IPA universal, DMG bernotarisasi, TestFlight, atau rilis App Store**. Pengguna membangun aplikasi menggunakan Mac dan Xcode. Versi macOS 0.4.3 menggunakan tata letak kolom eksplisit agar sidebar tidak pernah menutupi daftar aplikasi ketika ditampilkan; iPhone 0.4.0 telah diuji pada iPhone 11. Target lainnya masih eksperimental.
 
 ## Instalasi cepat
 
 **Belum pernah menggunakan Xcode?** Baca **[Panduan Instalasi Lengkap Bahasa Indonesia](docs/INSTALL.md)** terlebih dahulu.
+
+Untuk memulai dari source:
+
+```bash
+git clone https://github.com/dahlah77/dl7-cleaning.git
+cd dl7-cleaning
+zsh scripts/build-macos.sh
+```
+
+Skrip menghasilkan aplikasi Mac dalam folder `dist`, tanpa menghapus pemasangan sebelumnya. Untuk perangkat selain macOS, gunakan `zsh scripts/open-apple-project.sh` dan ikuti panduan Xcode.
 
 | Perangkat | Langkah awal | Status |
 | --- | --- | --- |
@@ -26,9 +78,9 @@ Palet referensi bawaan:
 
 | Parameter | Warna |
 | --- | --- |
-| Accent / Aksen | `#1EFF5A` |
-| Background / Latar belakang | `#040805` |
-| Foreground / Latar depan | `#3DFFF5` |
+| 🟢 Accent / Aksen | `#1EFF5A` |
+| ⚫ Background / Latar belakang | `#040805` |
+| 🟦 Foreground / Latar depan | `#3DFFF5` |
 
 Ketiganya dapat diubah sendiri-sendiri melalui color picker atau kode HEX dan disimpan secara lokal. Setelan warna iPhone dan Mac **tidak otomatis disinkronkan**.
 
@@ -46,7 +98,10 @@ Ketiganya dapat diubah sendiri-sendiri melalui color picker atau kode HEX dan di
 
 ## Buy me a coffee — dukungan kripto
 
-Tersedia UI dukungan dengan jaringan **BTC, SOL, ETH, BNB, dan USDT (BNB Smart Chain)**. Pemilik proyek sudah menetapkan alamat resmi berikut:
+Tersedia UI dukungan dengan jaringan **BTC, SOL, ETH, BNB, dan USDT (BNB Smart Chain)**. Donasi sepenuhnya opsional.
+
+<details>
+<summary><b>Tampilkan alamat kripto resmi</b></summary>
 
 | Jaringan / aset | Alamat penerima |
 | --- | --- |
@@ -57,6 +112,8 @@ Tersedia UI dukungan dengan jaringan **BTC, SOL, ETH, BNB, dan USDT (BNB Smart C
 | USDT (BNB Smart Chain, BEP-20) | `0xae91783b9e196f33535a4b45ba6fe041b149f7b9` |
 
 Alamat tampil otomatis dan dapat disalin; tombol explorer membantu verifikasi tujuan. **USDT harus dikirim melalui BNB Smart Chain (BEP-20), bukan ERC-20 atau jaringan lain.** Wallet link hanya muncul untuk jaringan yang memiliki deep link sederhana; aplikasi tidak membuat atau menandatangani transaksi. Selalu verifikasi jaringan dan alamat sebelum mengirim kripto.
+
+</details>
 
 ## Struktur repository
 
@@ -76,6 +133,7 @@ DL7-CLEANING/
 │   ├── build-macos.sh
 │   └── open-apple-project.sh
 ├── docs/INSTALL.md
+├── docs/media/              # Demo video MP4 + animated preview GIF
 ├── LICENSE
 └── LICENSE-UPSTREAM-HAVUS
 ```
@@ -93,3 +151,11 @@ DL7-CLEANING/
 Dirilis dengan lisensi MIT. Terima kasih kepada **Debi Kurnia** dan kontributor [XNyetok/Havus](https://github.com/XNyetok/Havus) untuk engine macOS berlisensi MIT. Pernyataan hak cipta asli tersedia di [LICENSE-UPSTREAM-HAVUS](LICENSE-UPSTREAM-HAVUS) dan harus dipertahankan dalam distribusi turunan.
 
 Proyek ini independen dan **tidak berafiliasi atau didukung oleh Apple**.
+
+---
+
+<div align="center">
+
+**DL7 CLEANING · Built with care for Apple devices.**
+
+</div>
