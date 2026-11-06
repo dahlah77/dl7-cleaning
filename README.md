@@ -4,7 +4,7 @@
 
 DL7 CLEANING adalah aplikasi utilitas Apple dengan antarmuka premium, pengenalan perangkat otomatis, navigasi bawaan Apple, dan kontrol warna yang dapat dipersonalisasi. Versi macOS mengadaptasi engine open-source [Havus](https://github.com/XNyetok/Havus) (MIT), sementara versi perangkat lain menggunakan SwiftUI dan mengikuti batas keamanan platform Apple.
 
-> **Status publik: source code v0.4.0.** Saat ini **tidak ada APK, IPA universal, DMG bernotarisasi, TestFlight, atau rilis App Store**. Pengguna membangun aplikasi menggunakan Mac dan Xcode. Instalasi versi 0.3.0 telah diverifikasi pada Mac Intel dan iPhone 11; target lainnya masih eksperimental.
+> **Status publik: source code v0.4.0.** Saat ini **tidak ada APK, IPA universal, DMG bernotarisasi, TestFlight, atau rilis App Store**. Pengguna membangun aplikasi menggunakan Mac dan Xcode. **v0.4.0 berhasil dibangun, dipasang, dan dijalankan pada Mac Intel serta iPhone 11**; target lainnya masih eksperimental.
 
 ## Instalasi cepat
 
