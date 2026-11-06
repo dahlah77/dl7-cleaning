@@ -6,6 +6,8 @@ set -euo pipefail
 
 readonly dl7_repository_url="https://github.com/dahlah77/dl7-cleaning.git"
 readonly dl7_source_dir="${DL7_SOURCE_DIR:-${HOME}/Developer/DL7-CLEANING}"
+readonly dl7_invoked_script="${0:A}"
+readonly dl7_script_project_root="${dl7_invoked_script:h:h}"
 typeset dl7_platform=""
 typeset dl7_project_root=""
 typeset -i dl7_dry_run=0
@@ -145,9 +147,8 @@ done
 xcodebuild -version >/dev/null 2>&1 || dl7_error 'Instal Xcode lengkap dari App Store, buka sekali, dan selesaikan setup awalnya.'
 
 dl7_locate_project() {
-  local script_root="${0:A:h:h}"
-  if [[ -f "$script_root/scripts/build-macos.sh" && -f "$script_root/Companions/project.yml" ]]; then
-    dl7_project_root="$script_root"
+  if [[ -f "$dl7_script_project_root/scripts/build-macos.sh" && -f "$dl7_script_project_root/Companions/project.yml" ]]; then
+    dl7_project_root="$dl7_script_project_root"
     return
   fi
   if [[ -f "$PWD/scripts/build-macos.sh" && -f "$PWD/Companions/project.yml" ]]; then
@@ -156,8 +157,14 @@ dl7_locate_project() {
   fi
 
   if [[ -e "$dl7_source_dir" ]]; then
-    [[ -d "$dl7_source_dir/.git" && -f "$dl7_source_dir/scripts/build-macos.sh" ]] ||
-      dl7_error "Lokasi source sudah terpakai oleh file lain: $dl7_source_dir. Gunakan DL7_SOURCE_DIR untuk memilih folder lain."
+    if [[ ! -d "$dl7_source_dir/.git" || ! -f "$dl7_source_dir/scripts/build-macos.sh" ]]; then
+      local clean_checkout="${dl7_source_dir}-setup-$(date '+%Y%m%d-%H%M%S')-$$"
+      dl7_info "Folder $dl7_source_dir berisi data lain; dibiarkan utuh."
+      dl7_info "Mengunduh source terbaru ke: $clean_checkout"
+      git clone --depth 1 "$dl7_repository_url" "$clean_checkout"
+      dl7_project_root="$clean_checkout"
+      return
+    fi
     dl7_project_root="$dl7_source_dir"
     local remote_url
     remote_url="$(git -C "$dl7_project_root" remote get-url origin 2>/dev/null || true)"

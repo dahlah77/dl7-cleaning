@@ -5,6 +5,7 @@
 - Menambahkan tautan **DEVELOPER** pada sidebar macOS dan tab iPhone/iPad untuk membuka portofolio di browser eksternal.
 - Tab iPhone mengembalikan pilihan sebelumnya setelah membuka browser sehingga tidak meninggalkan halaman kosong.
 - Bundle identifier tetap sama agar pembaruan dapat menggantikan versi sebelumnya; build fisik terbaru masih perlu diverifikasi.
+- Memperbaiki pendeteksian root installer saat dijalankan lewat fungsi zsh, serta menangani folder source non-repository dengan checkout terpisah tanpa mengubah data lama.
 
 ## Installer dan dokumentasi — 2026-11-06
 
