@@ -1,0 +1,29 @@
+# Xcode and Swift generated files
+.DS_Store
+DerivedData/
+*.xcuserstate
+**/xcuserdata/
+**/.build/
+**/.swiftpm/
+Companions/DL7CleaningCompanions.xcodeproj/
+
+# Distribution and signing artifacts
+dist/
+*.ipa
+*.dmg
+*.mobileprovision
+*.p12
+*.cer
+*.entitlements.backup
+Local.xcconfig
+.env
+.env.*
+*.log
+
+# Internal QA and device-specific development notes
+QA_RESULTS.md
+BuildBackups/
+Builds/
+
+# Third-party checkout is built into a temporary directory, not committed
+Havus-upstream/

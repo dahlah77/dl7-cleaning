@@ -1,0 +1,65 @@
+name: DL7CleaningCompanions
+options:
+  bundleIdPrefix: com.dahlah7.dl7cleaning
+settings:
+  base:
+    SWIFT_VERSION: '6.0'
+    MARKETING_VERSION: '0.3.0'
+    CURRENT_PROJECT_VERSION: '3'
+    TARGETED_DEVICE_FAMILY: '1,2'
+    GENERATE_INFOPLIST_FILE: YES
+    INFOPLIST_KEY_CFBundleDisplayName: DL7 CLEANING
+    CODE_SIGN_STYLE: Automatic
+    CODE_SIGN_IDENTITY: '-'
+    DEVELOPMENT_TEAM: ''
+    ENABLE_APP_SANDBOX: YES
+    ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+targets:
+  DL7iOS:
+    type: application
+    platform: iOS
+    deploymentTarget: '18.0'
+    sources:
+      - Shared
+      - Assets-iOS.xcassets
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.dahlah7.dl7cleaning.ios
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        # Required for edge-to-edge layout on iPhone; missing launch screens
+        # can make iOS run the app inside a letterboxed compatibility area.
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: 'UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortraitUpsideDown'
+        SUPPORTS_MACCATALYST: NO
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+  DL7watchOS:
+    type: application
+    platform: watchOS
+    deploymentTarget: '11.0'
+    sources:
+      - Shared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.dahlah7.dl7cleaning.watchos
+        TARGETED_DEVICE_FAMILY: '4'
+        INFOPLIST_KEY_WKApplication: YES
+  DL7tvOS:
+    type: application
+    platform: tvOS
+    deploymentTarget: '18.0'
+    sources:
+      - Shared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.dahlah7.dl7cleaning.tvos
+        TARGETED_DEVICE_FAMILY: '3'
+  DL7visionOS:
+    type: application
+    platform: visionOS
+    deploymentTarget: '2.0'
+    sources:
+      - Shared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.dahlah7.dl7cleaning.visionos
+        TARGETED_DEVICE_FAMILY: '7'
