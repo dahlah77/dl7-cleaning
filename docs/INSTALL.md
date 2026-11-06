@@ -45,7 +45,7 @@ zsh scripts/install.sh --platform all         # Semua target
 
 Tambahkan `--dry-run` untuk melihat langkah yang akan dilakukan tanpa perubahan apa pun, atau `--no-launch` untuk menyiapkan build/proyek tanpa membukanya. Contoh: `zsh scripts/install.sh --platform both --dry-run`.
 
-Jika `~/Developer/DL7-CLEANING` berisi perubahan lokal, installer **tidak mereset atau menghapusnya**. Untuk memilih folder source lain, jalankan `DL7_SOURCE_DIR="$HOME/Developer/DL7-BARU" zsh scripts/install.sh`.
+Jika `~/Developer/DL7-CLEANING` berisi perubahan lokal, installer **tidak mereset atau menghapusnya**. Installer mengambil source terbaru ke folder setup terpisah agar aplikasi tetap bisa dibangun. Untuk memilih folder source lain, jalankan `DL7_SOURCE_DIR="$HOME/Developer/DL7-BARU" zsh scripts/install.sh`.
 
 ### Tentang backup dan pembaruan Mac
 

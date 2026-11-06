@@ -170,9 +170,16 @@ dl7_locate_project() {
         git -C "$dl7_project_root" pull --ff-only
       else
         dl7_info 'Source lokal memiliki perubahan/branch sendiri; tidak ditimpa atau di-reset.'
+        local clean_checkout="${dl7_source_dir}-setup-$(date '+%Y%m%d-%H%M%S')-$$"
+        dl7_info "Mengambil source terbaru ke folder terpisah: $clean_checkout"
+        git clone --depth 1 "$dl7_repository_url" "$clean_checkout"
+        dl7_project_root="$clean_checkout"
       fi
     else
-      dl7_info 'Source lokal ditemukan; remote berbeda. Tidak ada pembaruan otomatis.'
+      local clean_checkout="${dl7_source_dir}-setup-$(date '+%Y%m%d-%H%M%S')-$$"
+      dl7_info 'Folder tersebut bukan checkout resmi; dibiarkan utuh.'
+      git clone --depth 1 "$dl7_repository_url" "$clean_checkout"
+      dl7_project_root="$clean_checkout"
     fi
     return
   fi
@@ -205,6 +212,15 @@ dl7_install_mac() {
   mkdir -p "$app_directory" 2>/dev/null ||
     dl7_error "Tidak bisa membuat folder $app_directory. Hasil build aman di $build_app"
   installed_app="$app_directory/DL7 CLEANING.app"
+
+  if command -v pgrep >/dev/null 2>&1 && pgrep -x 'DL7 CLEANING' >/dev/null 2>&1; then
+    dl7_info 'Meminta aplikasi DL7 CLEANING yang sedang berjalan untuk menutup…'
+    /usr/bin/osascript -e 'tell application "DL7 CLEANING" to quit' >/dev/null 2>&1 || true
+    sleep 2
+    if pgrep -x 'DL7 CLEANING' >/dev/null 2>&1; then
+      dl7_error "Tutup DL7 CLEANING yang lama terlebih dahulu. Build baru aman di: $build_app"
+    fi
+  fi
 
   if [[ -d "$installed_app" && ! -w "$app_directory" ]]; then
     dl7_info "Butuh izin admin untuk mengganti app di $app_directory."
