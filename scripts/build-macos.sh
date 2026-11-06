@@ -7,7 +7,7 @@ project_root="${0:A:h:h}"
 upstream_commit='df0478671adce53d0a0b24597b0ccfa620311d55'
 build_root="$(mktemp -d "${TMPDIR:-/tmp}/dl7-macos.XXXXXX")"
 checkout="$build_root/Havus"
-output="$project_root/dist/DL7 CLEANING v0.4.0.app"
+output="$project_root/dist/DL7 CLEANING v0.4.1.app"
 
 if [[ -e "$output" ]]; then
   print -u2 "Output already exists: $output"

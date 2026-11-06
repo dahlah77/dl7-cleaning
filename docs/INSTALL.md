@@ -50,7 +50,7 @@ Script akan:
 1. Mengunduh source Havus berlisensi MIT pada commit yang ditentukan.
 2. Memasukkan identitas, warna, dan UI DL7 CLEANING.
 3. Membangun aplikasi macOS Release dan menandatanganinya secara lokal.
-4. Menyimpan hasil di `dist/DL7 CLEANING v0.4.0.app`.
+4. Menyimpan hasil di `dist/DL7 CLEANING v0.4.1.app`.
 
 **Langkah terakhir:** buka folder `dist` di Finder, lalu tarik aplikasi ke **Applications**. Buka DL7 CLEANING dari Launchpad/Finder.
 

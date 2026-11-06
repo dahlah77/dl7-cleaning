@@ -11,7 +11,7 @@ struct HavusApp: App {
             RootView()
                 .environment(permissions)
                 .environment(exclusions)
-                .frame(minWidth: 860, minHeight: 560)
+                .frame(minWidth: 900, minHeight: 600)
         }
         .defaultSize(width: 1040, height: 700)
         .windowResizability(.contentMinSize)

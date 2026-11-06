@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.4.1 (macOS) — 2026-11-06
+
+- Memperbaiki sidebar yang bisa terpotong atau bergeser saat berpindah fitur dan mengubah ukuran jendela.
+- Memisahkan header brand dari daftar navigasi, sehingga header tetap terlihat dan item menu mempunyai area scroll sendiri.
+- Membatasi setiap halaman fitur ke ukuran panel detail untuk mencegah konten menimpa titlebar, sidebar, atau keluar dari batas jendela.
+- Mempertahankan build iPhone pada versi 0.4.0 karena perubahan ini khusus untuk macOS.
+
 ## 0.4.0 — 2026-11-06
 
 - Build, instalasi, dan peluncuran diverifikasi pada Mac Intel dan iPhone 11. Pembaruan iPhone menggunakan bundle identifier yang sama sehingga tidak membuat salinan aplikasi baru.

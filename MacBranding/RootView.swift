@@ -63,25 +63,27 @@ struct RootView: View {
 
     var body: some View {
         NavigationSplitView(columnVisibility: $visibility) {
-            ZStack {
-                colors.background.ignoresSafeArea()
-                List(selection: sidebarSelection) {
-                    HStack(spacing: 11) {
-                        Image(systemName: "circle.hexagongrid.fill")
-                            .font(.system(size: 25))
+            VStack(spacing: 0) {
+                HStack(spacing: 11) {
+                    Image(systemName: "circle.hexagongrid.fill")
+                        .font(.system(size: 25))
+                        .foregroundStyle(colors.accent)
+                        .frame(width: 42, height: 42)
+                        .background(colors.accent.opacity(0.12), in: RoundedRectangle(cornerRadius: 12))
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("DL7").font(.system(size: 23, weight: .bold, design: .rounded))
+                        Text("C L E A N I N G")
+                            .font(.system(size: 9, weight: .semibold, design: .monospaced))
                             .foregroundStyle(colors.accent)
-                            .frame(width: 42, height: 42)
-                            .background(colors.accent.opacity(0.12), in: RoundedRectangle(cornerRadius: 12))
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text("DL7").font(.system(size: 23, weight: .bold, design: .rounded))
-                            Text("C L E A N I N G")
-                                .font(.system(size: 9, weight: .semibold, design: .monospaced))
-                                .foregroundStyle(colors.accent)
-                        }
                     }
-                    .padding(.vertical, 19)
-                    .accessibilityElement(children: .combine)
+                    Spacer(minLength: 0)
+                }
+                .padding(.horizontal, 18)
+                .padding(.top, 18)
+                .padding(.bottom, 12)
+                .accessibilityElement(children: .combine)
 
+                List(selection: sidebarSelection) {
                     row(.home)
                     Section("BERSIHKAN") {
                         row(.systemJunk, badge: systemJunk.badge)
@@ -100,23 +102,30 @@ struct RootView: View {
                 }
                 .listStyle(.sidebar)
                 .scrollContentBackground(.hidden)
-            }
-            .navigationSplitViewColumnWidth(min: 210, ideal: 245, max: 290)
-        } detail: {
-            ZStack {
-                colors.background.ignoresSafeArea()
-                RadialGradient(colors: [colors.accent.opacity(0.10), .clear],
-                               center: .topTrailing, startRadius: 0, endRadius: 600)
-                    .ignoresSafeArea()
-                    .allowsHitTesting(false)
-                detail
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(colors.background.ignoresSafeArea())
+            .clipped()
+            .navigationSplitViewColumnWidth(min: 220, ideal: 245, max: 280)
+        } detail: {
+            GeometryReader { geometry in
+                ZStack(alignment: .topLeading) {
+                    colors.background
+                    RadialGradient(colors: [colors.accent.opacity(0.10), .clear],
+                                   center: .topTrailing, startRadius: 0, endRadius: 600)
+                        .allowsHitTesting(false)
+                    detail
+                        .frame(width: geometry.size.width, height: geometry.size.height,
+                               alignment: .topLeading)
+                }
+                .frame(width: geometry.size.width, height: geometry.size.height)
+                .clipped()
+            }
         }
-        .navigationSplitViewStyle(.balanced)
+        .navigationSplitViewStyle(.prominentDetail)
         .preferredColorScheme(.dark)
         .tint(colors.accent)
-        .hidingToolbarTitle()
         .onChange(of: exclusions.list, initial: true) { _, list in
             systemJunk.setExclusions(list)
             developerJunk.setExclusions(list)
@@ -361,13 +370,5 @@ struct RootView: View {
                     .font(.caption).foregroundStyle(.white.opacity(0.61))
             }
         }
-    }
-}
-
-extension View {
-    @ViewBuilder
-    fileprivate func hidingToolbarTitle() -> some View {
-        if #available(macOS 15.0, *) { toolbar(removing: .title) }
-        else { self }
     }
 }
