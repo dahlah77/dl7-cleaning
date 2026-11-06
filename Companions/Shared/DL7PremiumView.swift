@@ -17,8 +17,11 @@ struct DL7PremiumView: View {
     @AppStorage("dl7.palette.background") private var backgroundHex = DL7Palette.defaultBackground
     @AppStorage("dl7.palette.foreground") private var foregroundHex = DL7Palette.defaultForeground
     @AppStorage("dl7.donation.network") private var donationNetwork = "BTC"
-    @AppStorage("dl7.donation.address") private var donationAddress = ""
     @Environment(\.openURL) private var openURL
+
+    private var selectedDonationNetwork: DL7Donation.Network {
+        DL7Donation.Network(rawValue: donationNetwork) ?? .bitcoin
+    }
 
     private var colors: DL7Colors {
         DL7Colors(accent: accentHex, background: backgroundHex, foreground: foregroundHex)
@@ -356,7 +359,8 @@ struct DL7PremiumView: View {
         NavigationStack {
             ZStack {
                 colors.background.ignoresSafeArea()
-                VStack(alignment: .leading, spacing: 18) {
+                ScrollView {
+                  VStack(alignment: .leading, spacing: 18) {
                     Label("Buy me a coffee", systemImage: "cup.and.saucer.fill")
                         .font(.title2.bold()).foregroundStyle(colors.accent)
                     Text("Dukung pengembangan DL7 lewat kripto.")
@@ -366,29 +370,32 @@ struct DL7PremiumView: View {
                             Text(network.rawValue).tag(network.rawValue)
                         }
                     }
-                    .pickerStyle(.segmented)
-                    TextField("Alamat wallet penerima", text: $donationAddress)
-                        .textInputAutocapitalization(.never)
-                        .autocorrectionDisabled()
-                        .font(.system(.subheadline, design: .monospaced))
+                    .pickerStyle(.menu)
+                    Text(selectedDonationNetwork.chainNote)
+                        .font(.subheadline).foregroundStyle(colors.accent)
+                    Text(selectedDonationNetwork.address)
+                        .font(.system(.footnote, design: .monospaced))
+                        .textSelection(.enabled)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(13)
                         .background(.white.opacity(0.08), in: RoundedRectangle(cornerRadius: 13))
 
-                    if let walletURL = DL7Donation.walletURL(
-                        address: donationAddress,
-                        network: DL7Donation.Network(rawValue: donationNetwork) ?? .bitcoin
-                    ) {
+                    Button("Salin alamat") { UIPasteboard.general.string = selectedDonationNetwork.address }
+                        .buttonStyle(.borderedProminent).tint(colors.accent)
+                    if let walletURL = DL7Donation.walletURL(network: selectedDonationNetwork) {
                         Button("Buka Wallet") { openURL(walletURL) }
-                            .buttonStyle(.borderedProminent).tint(colors.accent)
-                        Button("Salin alamat") { UIPasteboard.general.string = donationAddress }
                             .foregroundStyle(colors.foreground)
-                    } else {
-                        Text("Alamat valid diperlukan sebelum tautan donasi aktif.")
-                            .font(.caption).foregroundStyle(.white.opacity(0.65))
                     }
-                    Spacer(minLength: 0)
+                    if let explorerURL = selectedDonationNetwork.explorerURL {
+                        Button("Lihat alamat") { openURL(explorerURL) }
+                            .foregroundStyle(colors.foreground)
+                    }
+                    Text("Periksa jaringan sebelum mengirim. USDT menggunakan BNB Smart Chain (BEP-20).")
+                        .font(.caption).foregroundStyle(.white.opacity(0.65))
+                  }
+                  .padding(24)
                 }
-                .padding(24)
             }
             .navigationTitle("Dukung DL7")
             .toolbar {

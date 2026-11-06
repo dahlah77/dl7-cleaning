@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.4.0 — 2026-11-06
+
+- Alamat donasi resmi ditetapkan oleh pemilik proyek untuk BTC, SOL, ETH, BNB, dan USDT di BNB Smart Chain (BEP-20).
+- Alamat tampil otomatis sesuai jaringan dan tidak dapat diubah menjadi alamat penerima lain dari UI.
+- Menu pemilihan jaringan kini sesuai ukuran iPhone dan Mac; tersedia salin alamat, tautan explorer, dan wallet link hanya jika jaringan aman untuk deep link sederhana.
+- Memberi penanda jaringan eksplisit agar pengguna tidak mengirim USDT melalui chain yang salah.
+
 ## 0.3.0 — 2026-11-06
 
 - Identitas visual premium berbeda dari Havus.

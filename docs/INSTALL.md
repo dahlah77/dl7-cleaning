@@ -50,7 +50,7 @@ Script akan:
 1. Mengunduh source Havus berlisensi MIT pada commit yang ditentukan.
 2. Memasukkan identitas, warna, dan UI DL7 CLEANING.
 3. Membangun aplikasi macOS Release dan menandatanganinya secara lokal.
-4. Menyimpan hasil di `dist/DL7 CLEANING v0.3.0.app`.
+4. Menyimpan hasil di `dist/DL7 CLEANING v0.4.0.app`.
 
 **Langkah terakhir:** buka folder `dist` di Finder, lalu tarik aplikasi ke **Applications**. Buka DL7 CLEANING dari Launchpad/Finder.
 
@@ -112,7 +112,7 @@ Apple TV **tidak memerlukan Developer Mode** seperti iPhone; pairing melalui Xco
 
 - **Warna:** buka **Setelan** (iPhone/iPad) atau **Tampilan** (Mac). Ubah *Aksen*, *Latar belakang*, dan *Latar depan* satu per satu melalui color picker atau kode HEX. Tombol Reset mengembalikan referensi bawaan.
 - **Penjelasan fitur:** tersedia dalam satu navigasi bernama **Fitur**.
-- **Donasi kripto:** buka **Dukung DL7 / Buy me a coffee**. Alamat penerima **belum diisi dari source publik**. Masukkan alamat wallet dan pilih jaringan yang sesuai. Tombol akan aktif bila format alamat lolos pemeriksaan dasar. Selalu verifikasi jaringan/alamat di wallet sebelum mengirim. DL7 tidak mengirim uang otomatis.
+- **Donasi kripto:** buka **Dukung DL7 / Buy me a coffee**, pilih BTC, SOL, ETH, BNB, atau USDT (BNB Smart Chain). Alamat resmi tampil otomatis; tekan **Salin alamat** dan tempelkan di wallet. Untuk USDT gunakan **BNB Smart Chain (BEP-20)**. DL7 tidak mengirim uang otomatis.
 - **Perbedaan Mac vs iPhone:** di Mac tersedia tool pembersihan sistem/developer berdasarkan akses pengguna. Di iPhone, cache sistem/aplikasi lain tetap terlindungi oleh sandbox iOS.
 
 ## 9. Masalah umum
@@ -126,7 +126,7 @@ Apple TV **tidak memerlukan Developer Mode** seperti iPhone; pairing melalui Xco
 | Aplikasi iPhone tidak terbuka setelah beberapa hari | Build dan jalankan ulang; profil Personal Team gratis berakhir setelah tujuh hari. |
 | Target Watch/TV/Vision tidak ada | Pasang platform support di Xcode → Settings → Components; periksa versi OS minimum. |
 | Pembersihan iPhone menunjukkan `0 B` | Tidak ada file DL7 yang memenuhi syarat; aplikasi tidak bisa mengakses cache aplikasi lain. |
-| Alamat donasi tidak aktif | Periksa jaringan, panjang, dan format alamat. Jangan gunakan alamat jaringan berbeda. |
+| Tidak ada tombol Buka Wallet untuk BNB/USDT | Gunakan **Salin alamat** lalu buka wallet dan pilih BNB Smart Chain (BEP-20). Ini sengaja menghindari deep link ke jaringan yang salah. |
 
 ## Referensi Apple
 

@@ -78,8 +78,40 @@ enum DL7Donation {
         case bitcoin = "BTC"
         case ethereum = "ETH"
         case solana = "SOL"
+        case bnb = "BNB"
+        case usdtBSC = "USDT (BSC)"
 
         var id: String { rawValue }
+
+        /// Project owner's publicly designated receiving address. Never user-editable in the donation UI.
+        var address: String {
+            switch self {
+            case .bitcoin: "bc1papfmgppu3h0qhw64eag54k80c8gc7um8ra7llng5u9fgxnyxlllsyu7p3s"
+            case .solana: "6KdxkUkTfTAVoenCyupBHvdRaNfoDDhUzhyjc4AdUXKU"
+            case .ethereum, .bnb, .usdtBSC: "0xae91783b9e196f33535a4b45ba6fe041b149f7b9"
+            }
+        }
+
+        var chainNote: String {
+            switch self {
+            case .bitcoin: "Bitcoin • mainnet"
+            case .ethereum: "Ethereum • mainnet"
+            case .solana: "Solana • mainnet"
+            case .bnb: "BNB • BNB Smart Chain (BSC)"
+            case .usdtBSC: "USDT • BNB Smart Chain (BEP-20)"
+            }
+        }
+
+        var explorerURL: URL? {
+            let prefix: String
+            switch self {
+            case .bitcoin: prefix = "https://mempool.space/address/"
+            case .ethereum: prefix = "https://etherscan.io/address/"
+            case .solana: prefix = "https://solscan.io/account/"
+            case .bnb, .usdtBSC: prefix = "https://bscscan.com/address/"
+            }
+            return URL(string: prefix + address)
+        }
     }
 
     static func isValid(address: String, network: Network) -> Bool {
@@ -89,7 +121,7 @@ enum DL7Donation {
             let legacy = (value.hasPrefix("1") || value.hasPrefix("3")) && (26...35).contains(value.count)
             let segwit = value.lowercased().hasPrefix("bc1") && (42...90).contains(value.count)
             return (legacy || segwit) && value.rangeOfCharacter(from: .whitespacesAndNewlines) == nil
-        case .ethereum:
+        case .ethereum, .bnb, .usdtBSC:
             return value.range(of: "^0x[0-9A-Fa-f]{40}$", options: .regularExpression) != nil
         case .solana:
             let alphabet = CharacterSet(charactersIn: "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz")
@@ -97,14 +129,17 @@ enum DL7Donation {
         }
     }
 
-    static func walletURL(address: String, network: Network) -> URL? {
-        guard isValid(address: address, network: network) else { return nil }
+    static func walletURL(network: Network) -> URL? {
+        guard isValid(address: network.address, network: network) else { return nil }
         let prefix: String
         switch network {
         case .bitcoin: prefix = "bitcoin"
         case .ethereum: prefix = "ethereum"
         case .solana: prefix = "solana"
+        // A generic ethereum: link can silently select the wrong chain/token.
+        // For BNB / USDT on BSC, the user must explicitly select BEP-20 in their wallet.
+        case .bnb, .usdtBSC: return nil
         }
-        return URL(string: "\(prefix):\(address.trimmingCharacters(in: .whitespacesAndNewlines))")
+        return URL(string: "\(prefix):\(network.address)")
     }
 }

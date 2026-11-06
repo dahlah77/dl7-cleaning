@@ -52,7 +52,10 @@ struct RootView: View {
     @AppStorage("dl7.palette.background") private var backgroundHex = DL7Palette.defaultBackground
     @AppStorage("dl7.palette.foreground") private var foregroundHex = DL7Palette.defaultForeground
     @AppStorage("dl7.donation.network") private var donationNetwork = "BTC"
-    @AppStorage("dl7.donation.address") private var donationAddress = ""
+
+    private var selectedDonationNetwork: DL7Donation.Network {
+        DL7Donation.Network(rawValue: donationNetwork) ?? .bitcoin
+    }
 
     private var colors: DL7Colors {
         DL7Colors(accent: accentHex, background: backgroundHex, foreground: foregroundHex)
@@ -334,27 +337,28 @@ struct RootView: View {
                         Text(network.rawValue).tag(network.rawValue)
                     }
                 }
-                .pickerStyle(.segmented)
-                TextField("Alamat wallet penerima", text: $donationAddress)
-                    .textFieldStyle(.roundedBorder)
+                .pickerStyle(.menu)
+                Text(selectedDonationNetwork.chainNote)
+                    .font(.subheadline).foregroundStyle(colors.accent)
+                Text(selectedDonationNetwork.address)
                     .font(.system(.body, design: .monospaced))
-                if let walletURL = DL7Donation.walletURL(
-                    address: donationAddress,
-                    network: DL7Donation.Network(rawValue: donationNetwork) ?? .bitcoin
-                ) {
-                    HStack(spacing: 12) {
-                        Button("Buka Wallet") { NSWorkspace.shared.open(walletURL) }
-                            .buttonStyle(.borderedProminent)
-                        Button("Salin alamat") {
-                            NSPasteboard.general.clearContents()
-                            NSPasteboard.general.setString(donationAddress, forType: .string)
-                        }
+                    .textSelection(.enabled)
+                    .fixedSize(horizontal: false, vertical: true)
+                HStack(spacing: 12) {
+                    Button("Salin alamat") {
+                        NSPasteboard.general.clearContents()
+                        NSPasteboard.general.setString(selectedDonationNetwork.address, forType: .string)
                     }
-                } else {
-                    Label("Isi alamat valid untuk mengaktifkan donasi.", systemImage: "info.circle")
-                        .font(.caption)
-                        .foregroundStyle(.white.opacity(0.61))
+                    .buttonStyle(.borderedProminent)
+                    if let walletURL = DL7Donation.walletURL(network: selectedDonationNetwork) {
+                        Button("Buka Wallet") { NSWorkspace.shared.open(walletURL) }
+                    }
+                    if let explorerURL = selectedDonationNetwork.explorerURL {
+                        Button("Lihat alamat") { NSWorkspace.shared.open(explorerURL) }
+                    }
                 }
+                Text("Periksa jaringan sebelum mengirim. Untuk USDT gunakan BNB Smart Chain (BEP-20).")
+                    .font(.caption).foregroundStyle(.white.opacity(0.61))
             }
         }
     }

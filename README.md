@@ -4,7 +4,7 @@
 
 DL7 CLEANING adalah aplikasi utilitas Apple dengan antarmuka premium, pengenalan perangkat otomatis, navigasi bawaan Apple, dan kontrol warna yang dapat dipersonalisasi. Versi macOS mengadaptasi engine open-source [Havus](https://github.com/XNyetok/Havus) (MIT), sementara versi perangkat lain menggunakan SwiftUI dan mengikuti batas keamanan platform Apple.
 
-> **Status publik: source code v0.3.0.** Saat ini **tidak ada APK, IPA universal, DMG bernotarisasi, TestFlight, atau rilis App Store**. Pengguna membangun aplikasi menggunakan Mac dan Xcode. Instalasi terverifikasi pada Mac Intel dan iPhone 11; target lainnya masih eksperimental.
+> **Status publik: source code v0.4.0.** Saat ini **tidak ada APK, IPA universal, DMG bernotarisasi, TestFlight, atau rilis App Store**. Pengguna membangun aplikasi menggunakan Mac dan Xcode. Instalasi versi 0.3.0 telah diverifikasi pada Mac Intel dan iPhone 11; target lainnya masih eksperimental.
 
 ## Instalasi cepat
 
@@ -46,9 +46,17 @@ Ketiganya dapat diubah sendiri-sendiri melalui color picker atau kode HEX dan di
 
 ## Buy me a coffee — dukungan kripto
 
-Tersedia UI dukungan dengan pilihan jaringan **BTC, ETH, SOL**, pemeriksaan dasar format alamat, tombol membuka wallet dan menyalin alamat.
+Tersedia UI dukungan dengan jaringan **BTC, SOL, ETH, BNB, dan USDT (BNB Smart Chain)**. Pemilik proyek sudah menetapkan alamat resmi berikut:
 
-**Alamat penerima tidak ditanamkan ke source** karena pemilik proyek belum menetapkannya. Tautan baru aktif setelah alamat valid diisikan. Aplikasi tidak memindahkan dana otomatis; verifikasi alamat dan jaringan sebelum konfirmasi di wallet.
+| Jaringan / aset | Alamat penerima |
+| --- | --- |
+| Bitcoin (BTC) | `bc1papfmgppu3h0qhw64eag54k80c8gc7um8ra7llng5u9fgxnyxlllsyu7p3s` |
+| Solana (SOL) | `6KdxkUkTfTAVoenCyupBHvdRaNfoDDhUzhyjc4AdUXKU` |
+| Ethereum (ETH) | `0xae91783b9e196f33535a4b45ba6fe041b149f7b9` |
+| BNB (BNB Smart Chain) | `0xae91783b9e196f33535a4b45ba6fe041b149f7b9` |
+| USDT (BNB Smart Chain, BEP-20) | `0xae91783b9e196f33535a4b45ba6fe041b149f7b9` |
+
+Alamat tampil otomatis dan dapat disalin; tombol explorer membantu verifikasi tujuan. **USDT harus dikirim melalui BNB Smart Chain (BEP-20), bukan ERC-20 atau jaringan lain.** Wallet link hanya muncul untuk jaringan yang memiliki deep link sederhana; aplikasi tidak membuat atau menandatangani transaksi. Selalu verifikasi jaringan dan alamat sebelum mengirim kripto.
 
 ## Struktur repository
 
