@@ -16,8 +16,8 @@ fi
 # These paths are inside this newly created fork only, never the installed Havus app.
 cp "$source_dir/RootView.swift" "$repo/Havus/Navigation/RootView.swift"
 cp "$source_dir/../Companions/Shared/DL7Palette.swift" "$repo/Havus/DL7Palette.swift"
-cp "$source_dir/HavusApp.swift" "$repo/Havus/HavusApp.swift"
-cp "$source_dir/Havus.xcconfig" "$repo/Config/Havus.xcconfig"
+cp "$source_dir/DL7App.swift" "$repo/Havus/HavusApp.swift"
+cp "$source_dir/DL7.xcconfig" "$repo/Config/Havus.xcconfig"
 
 # Rebrand only the standalone name token, preserving HavusCore source identifiers.
 find "$repo/Havus" -type f \( -name '*.swift' -o -name '*.xcstrings' \) -print0 |

@@ -1,4 +1,4 @@
-// DL7 CLEANING. The original Havus name and icon are excluded from the fork.
+// DL7 CLEANING application metadata. Third-party credits are retained below.
 PRODUCT_NAME = DL7 CLEANING
 PRODUCT_BUNDLE_IDENTIFIER = com.dahlah7.dl7cleaning.macos
 PRODUCT_BUNDLE_IDENTIFIER[config=Debug] = com.dahlah7.dl7cleaning.macos.debug

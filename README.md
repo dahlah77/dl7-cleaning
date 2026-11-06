@@ -103,13 +103,13 @@ Palet referensi bawaan:
 Ketiganya dapat diubah sendiri-sendiri melalui color picker atau kode HEX dan disimpan secara lokal. Setelan warna iPhone dan Mac **tidak otomatis disinkronkan**.
 
 - iPhone/iPad: **Beranda • Bersihkan • Fitur • Setelan**.
-- Mac: dashboard, sidebar native, tool cleanup Havus, **Fitur**, **Tampilan**, dan **Dukung DL7**.
+- Mac: dashboard, sidebar native, tool cleanup DL7, **Fitur**, **Tampilan**, dan **Dukung DL7**.
 - Satu navigasi **Fitur** menjelaskan kemampuan aplikasi tanpa memenuhi halaman utama dengan teks panjang.
 - Navigasi **DEVELOPER** membuka portofolio lewat browser eksternal tanpa mengubah data aplikasi.
 
 ## Kemampuan & batasan
 
-**macOS:** pemindaian sampah sistem/developer, uninstaller, file besar, startup items (menggunakan modul Havus yang diadaptasi). Penghapusan tetap mengikuti pilihan dan konfirmasi pengguna. Beberapa operasi membutuhkan izin macOS.
+**macOS:** pemindaian sampah sistem/developer, uninstaller, file besar, startup items (menggunakan modul pembersih open-source yang diadaptasi untuk DL7). Penghapusan tetap mengikuti pilihan dan konfirmasi pengguna. Beberapa operasi membutuhkan izin macOS.
 
 **iOS/iPadOS:** mendeteksi perangkat, memindai cache milik DL7, membersihkan cache serta file sementara DL7 yang telah berumur lebih dari satu jam. **Apple tidak mengizinkan DL7 menghapus cache sistem, Safari, WhatsApp, atau data aplikasi lain.** Tidak ada angka penghematan palsu.
 
@@ -145,8 +145,8 @@ DL7-CLEANING/
 │   └── Tests/
 ├── MacBranding/
 │   ├── RootView.swift        # UI Mac premium
-│   ├── HavusApp.swift
-│   ├── Havus.xcconfig
+│   ├── DL7App.swift
+│   ├── DL7.xcconfig
 │   └── apply_to_upstream_clone.sh
 ├── scripts/
 │   ├── build-macos.sh

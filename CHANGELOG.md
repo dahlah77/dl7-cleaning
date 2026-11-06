@@ -1,5 +1,11 @@
 # Changelog
 
+## Penyeragaman identitas source DL7 — 2026-11-07
+
+- Mengganti nama file konfigurasi dan entry point Mac menjadi `DL7.xcconfig` dan `DL7App.swift`, termasuk nama struct `DL7App`.
+- Memperbarui script build dan struktur folder di dokumentasi agar mengacu pada nama baru.
+- Mempertahankan jalur proyek, modul, dan kredit engine pihak ketiga yang masih dibutuhkan oleh build/lisensi MIT. Tidak mengubah bundle identifier atau data pengguna.
+
 ## 0.4.4 (macOS) / 0.4.1 (iPhone) — 2026-11-06
 
 - Menambahkan tautan **DEVELOPER** pada sidebar macOS dan tab iPhone/iPad untuk membuka portofolio di browser eksternal.

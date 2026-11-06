@@ -71,7 +71,7 @@ Jika `~/Developer/DL7-CLEANING` berisi perubahan lokal, installer **tidak merese
 | Apple TV (tvOS 18+) | `DL7tvOS` | Pairing Apple TV di Xcode | Eksperimental; belum diuji perangkat fisik |
 | Apple Vision Pro (visionOS 2+) | `DL7visionOS` | Pairing Vision Pro di Xcode | Eksperimental; belum diuji perangkat fisik |
 
-> **Catatan jujur:** Mac menggunakan fitur Havus yang diadaptasi dan tetap meminta izin pengguna sebelum penghapusan. Di iPhone/iPad, Apple melarang aplikasi menghapus cache sistem atau aplikasi lain; DL7 hanya bisa membersihkan cache dan file sementara milik DL7 sendiri. Pada Apple Watch, halaman cache bersifat informasi saja.
+> **Catatan jujur:** Mac menggunakan engine pembersih open-source yang diadaptasi untuk DL7 dan tetap meminta izin pengguna sebelum penghapusan. Di iPhone/iPad, Apple melarang aplikasi menghapus cache sistem atau aplikasi lain; DL7 hanya bisa membersihkan cache dan file sementara milik DL7 sendiri. Pada Apple Watch, halaman cache bersifat informasi saja.
 
 ## 2. Persiapan sekali saja
 

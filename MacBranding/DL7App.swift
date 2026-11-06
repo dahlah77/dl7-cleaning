@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct HavusApp: App {
+struct DL7App: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
     @State private var permissions = PermissionCenter()
     @State private var exclusions = ExclusionStore()
