@@ -9,6 +9,8 @@ Companions/DL7CleaningCompanions.xcodeproj/
 
 # Distribution and signing artifacts
 dist/
+dist*.noindex/
+BuildCache*.noindex/
 *.ipa
 *.dmg
 *.mobileprovision
