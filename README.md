@@ -157,7 +157,7 @@ DL7-CLEANING/
 ├── docs/INSTALL.md
 ├── docs/media/              # Demo video MP4 + animated preview GIF
 ├── LICENSE
-└── LICENSE-UPSTREAM-HAVUS
+└── LICENSE-THIRD-PARTY
 ```
 
 `scripts/build-macos.sh` mengunduh source Havus pada commit terpilih, menerapkan branding dan UI DL7, lalu menghasilkan aplikasi **di direktori `dist` tanpa menghapus/mengubah aplikasi yang sudah terpasang**. Repo ini sengaja tidak mengunggah checkout Havus, cache build, provisioning profile, atau data Mac pribadi.
@@ -170,7 +170,7 @@ DL7-CLEANING/
 
 ## Lisensi dan kredit
 
-Dirilis dengan lisensi MIT. Terima kasih kepada **Debi Kurnia** dan kontributor [XNyetok/Havus](https://github.com/XNyetok/Havus) untuk engine macOS berlisensi MIT. Pernyataan hak cipta asli tersedia di [LICENSE-UPSTREAM-HAVUS](LICENSE-UPSTREAM-HAVUS) dan harus dipertahankan dalam distribusi turunan.
+Dirilis dengan lisensi MIT. Terima kasih kepada **Debi Kurnia** dan kontributor [XNyetok/Havus](https://github.com/XNyetok/Havus) untuk engine macOS berlisensi MIT. Pernyataan hak cipta asli tersedia di [LICENSE-THIRD-PARTY](LICENSE-THIRD-PARTY) dan harus dipertahankan dalam distribusi turunan.
 
 Proyek ini independen dan **tidak berafiliasi atau didukung oleh Apple**.
 
